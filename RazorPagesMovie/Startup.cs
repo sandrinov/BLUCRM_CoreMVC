@@ -9,13 +9,19 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.EntityFrameworkCore;
+using RazorPagesMovie.Models;
+using RazorPagesMovie.PageFilter.Filters;
+using Microsoft.Extensions.Logging;
 
 namespace RazorPagesMovie
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        ILogger _logger;
+        public Startup(ILoggerFactory loggerFactory,IConfiguration configuration)
         {
+            _logger = loggerFactory.CreateLogger<GlobalFiltersLogger>();
             Configuration = configuration;
         }
 
@@ -32,7 +38,21 @@ namespace RazorPagesMovie
             });
 
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddMvc( options =>
+            {
+                options.Filters.Add(new SampleAsyncPageFilter(_logger));
+                options.Filters.Add(new SamplePageFilter(_logger));
+
+            }).SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
+             .AddRazorPagesOptions(options =>
+             {
+                 options.Conventions.AddFolderApplicationModelConvention(
+                     "/subFolder",
+                     model => model.Filters.Add(new SampleAsyncPageFilter(_logger)));
+             }); 
+
+            services.AddDbContext<RazorPagesMovieContext>(options =>
+                    options.UseSqlServer(Configuration.GetConnectionString("RazorPagesMovieContext")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
