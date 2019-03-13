@@ -5,15 +5,18 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using BLUCRM_CoreMVC.Models;
+using BLUCRM_CoreMVC.Repository;
 
 namespace BLUCRM_CoreMVC.Controllers
 {
     public class HomeController : Controller
     {
-        Repository.EF_Repository _repository;
-        public HomeController()
+        IRepository _repository;
+        public HomeController(IRepository repository)
         {
-            _repository = new Repository.EF_Repository();
+            _repository = repository;
+            //RepositoryFactory repositoryFactory = new RepositoryFactory();
+            //_repository = RepositoryFactory.GetRepository();
         }
         public IActionResult Index()
         {

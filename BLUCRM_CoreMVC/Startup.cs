@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BLUCRM_CoreMVC.Factories;
+using BLUCRM_CoreMVC.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -31,7 +33,9 @@ namespace BLUCRM_CoreMVC
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-
+            services.AddSingleton<IRepository,EF_Repository>();
+            services.AddSingleton<IFactory<BLUCRM_CoreMVC.Repository.EF.Employees, BLUCRM_CoreMVC.DTOs.DTO_Employee>, EmployeeFactory>();
+            //services.AddTransient<IRepository, EF_Repository>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
