@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BLUCRM_CoreRepository;
+using BLUCRM_CoreRepository.DTOs;
+using BLUCRM_CoreRepository.EF;
+using BLUCRM_CoreRepository.Factories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -26,6 +30,9 @@ namespace BLUCRM_CoreAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddSingleton<IRepository, EF_Repository>();
+            services.AddSingleton<IFactory<Employees, DTO_Employee>, EmployeeFactory>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
