@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
 using System.Threading.Tasks;
 using BLUCRM_CoreMVC.Factories;
 using BLUCRM_CoreMVC.Repository;
@@ -32,6 +34,14 @@ namespace BLUCRM_CoreMVC
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
+
+            Uri endPointA = new Uri((Configuration.GetSection("Endpoints")["ApiServerBaseAddress"]).ToString());
+            HttpClient httpClient = new HttpClient()
+            {
+                BaseAddress = endPointA,
+            };
+            ServicePointManager.FindServicePoint(endPointA).ConnectionLeaseTimeout = 60000; // sixty seconds
+            services.AddSingleton<HttpClient>(httpClient);
 
             services.AddSingleton<IRepository,EF_Repository>();
             services.AddSingleton<IFactory<BLUCRM_CoreMVC.Repository.EF.Employees, BLUCRM_CoreMVC.DTOs.DTO_Employee>, EmployeeFactory>();
