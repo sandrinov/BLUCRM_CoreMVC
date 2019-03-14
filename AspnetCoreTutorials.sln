@@ -24,9 +24,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVC_dotNet", "MVC_dotNet\MV
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BLUCRM_Core", "BLUCRM_Core\BLUCRM_Core.csproj", "{C5DBB332-CA1F-45C7-A4CB-CB8229C1BD79}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BLUCRM_CoreAPI", "BLUCRM_CoreAPI\BLUCRM_CoreAPI.csproj", "{877F4950-BE15-40B3-84A8-F76CC948A7BA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BLUCRM_CoreAPI", "BLUCRM_CoreAPI\BLUCRM_CoreAPI.csproj", "{877F4950-BE15-40B3-84A8-F76CC948A7BA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BLUCRM_CoreRepository", "BLUCRM_CoreRepository\BLUCRM_CoreRepository.csproj", "{D2EE2E88-ADAE-474B-AB60-2839ED7F0940}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BLUCRM_CoreRepository", "BLUCRM_CoreRepository\BLUCRM_CoreRepository.csproj", "{D2EE2E88-ADAE-474B-AB60-2839ED7F0940}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentityServer", "IdentityServer4\IdentityServer.csproj", "{6B1320F6-86B6-40BE-9880-8A21C4F68611}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -78,6 +80,10 @@ Global
 		{D2EE2E88-ADAE-474B-AB60-2839ED7F0940}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D2EE2E88-ADAE-474B-AB60-2839ED7F0940}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D2EE2E88-ADAE-474B-AB60-2839ED7F0940}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6B1320F6-86B6-40BE-9880-8A21C4F68611}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6B1320F6-86B6-40BE-9880-8A21C4F68611}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6B1320F6-86B6-40BE-9880-8A21C4F68611}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6B1320F6-86B6-40BE-9880-8A21C4F68611}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

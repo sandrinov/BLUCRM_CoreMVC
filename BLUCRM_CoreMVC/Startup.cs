@@ -46,6 +46,16 @@ namespace BLUCRM_CoreMVC
             services.AddSingleton<IRepository,EF_Repository>();
             services.AddSingleton<IFactory<BLUCRM_CoreMVC.Repository.EF.Employees, BLUCRM_CoreMVC.DTOs.DTO_Employee>, EmployeeFactory>();
             //services.AddTransient<IRepository, EF_Repository>();
+
+            services.AddSession(options =>
+            {
+
+                // Set a short timeout for easy testing.
+                //options.IdleTimeout = TimeSpan.FromSeconds(10);
+                options.Cookie.HttpOnly = true;
+            });
+
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
@@ -64,6 +74,7 @@ namespace BLUCRM_CoreMVC
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+            app.UseSession();
             app.UseCookiePolicy();
 
             app.UseMvc(routes =>
